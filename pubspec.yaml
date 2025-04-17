@@ -1,0 +1,75 @@
+name: flutter_application_1
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Utility Packages
+  http: "1.1.0"
+  intl: "0.18.1"
+  logger: "2.0.1"
+  url_launcher: "^6.1.12"
+  connectivity_plus: ^6.0.3
+  lottie: "^2.7.0"
+  flutter_native_splash: ^2.3.2
+  smooth_page_indicator: ^1.1.0
+  carousel_slider: ^4.2.1
+
+  firebase_core: ^3.1.0
+
+  # Icons
+  iconsax: "^0.0.8"
+  cupertino_icons: "^1.0.2"
+
+  # State Management
+  get: "^4.6.5"
+  get_storage: "^2.1.1"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/logos/
+    - assets/icons/
+    - assets/image/on_boarding_images/
+    - assets/image/verify_email/
+    - assets/image/banners/
+    - assets/image/products/
+    - assets/icons/categories/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins Italic.ttf
+          style: italic
+        - asset: assets/fonts/Poppins Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins Medium Italic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Poppins SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins Bold.ttf
+          weight: 800
+        # Uncomment the following lines if you have these fonts
+        # - asset: assets/fonts/Poppins SemiBold Italic.ttf
+        # - asset: assets/fonts/Poppins Bold Italic.ttf
+        # - asset: assets/fonts/coolvetica rg it.otf
+        # - asset: assets/fonts/coolvetica rg.otf
+        # - asset: assets/fonts/Poppins Light Italic.ttf

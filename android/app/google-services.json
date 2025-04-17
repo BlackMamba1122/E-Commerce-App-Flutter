@@ -1,0 +1,134 @@
+{
+  "project_info": {
+    "project_number": "232098386541",
+    "project_id": "ecommerceapp-cara",
+    "storage_bucket": "ecommerceapp-cara.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232098386541:android:2a419da5d9bab5ea692564",
+        "android_client_info": {
+          "package_name": "com.example.fluter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232098386541-k087pln53adrt1u0lgqhm8igmkunu1et.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fluter_application_1",
+            "certificate_hash": "dbebbe9ad0b8cc9860bdf2bfdfc70267eeff77bb"
+          }
+        },
+        {
+          "client_id": "232098386541-kmpc6irc0uskrt2njud7dlh0p7fkjqf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjwld703-fdcLsFncElgKl2RbT9vReEMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232098386541-kmpc6irc0uskrt2njud7dlh0p7fkjqf2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "232098386541-r387uuijpakhe6716n72tvs4ejd6br0s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232098386541:android:fba5fe75e0dae9b2692564",
+        "android_client_info": {
+          "package_name": "com.example.flutter_applica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232098386541-kmpc6irc0uskrt2njud7dlh0p7fkjqf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjwld703-fdcLsFncElgKl2RbT9vReEMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232098386541-kmpc6irc0uskrt2njud7dlh0p7fkjqf2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "232098386541-r387uuijpakhe6716n72tvs4ejd6br0s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232098386541:android:fa3fccb58577b0dc692564",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232098386541-son0r1223h3kafgp5p6ge0rnfl2lepsg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_application_1",
+            "certificate_hash": "dbebbe9ad0b8cc9860bdf2bfdfc70267eeff77bb"
+          }
+        },
+        {
+          "client_id": "232098386541-kmpc6irc0uskrt2njud7dlh0p7fkjqf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjwld703-fdcLsFncElgKl2RbT9vReEMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232098386541-kmpc6irc0uskrt2njud7dlh0p7fkjqf2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "232098386541-r387uuijpakhe6716n72tvs4ejd6br0s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
