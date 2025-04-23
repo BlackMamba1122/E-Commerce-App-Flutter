@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/b_brand_title_with_icon.dart';
 import 'package:flutter_application_1/common/widgets/store/b_circular_image.dart';
 import 'package:flutter_application_1/common/widgets/home/circle_conatiner.dart';
-import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/enums.dart';
 import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
-import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 
 class BBrandCart extends StatelessWidget {
   const BBrandCart({
@@ -24,7 +22,7 @@ class BBrandCart extends StatelessWidget {
       backgroundColor: Colors.transparent,
       child: Row(
         children: [
-          Flexible(
+          const Flexible(
             child: BCircularImage(
               image: BImages.clothIcon,
 //              overlayColor: BHelperFunctions.isDarkMode(context) ? BColors.white : BColors.dark,

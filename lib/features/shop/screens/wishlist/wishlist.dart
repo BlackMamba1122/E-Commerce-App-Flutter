@@ -3,7 +3,6 @@ import 'package:flutter_application_1/common/widgets/appbar/appbar.dart';
 import 'package:flutter_application_1/common/widgets/home/circular_icon.dart';
 import 'package:flutter_application_1/common/widgets/home/grid_layout.dart';
 import 'package:flutter_application_1/common/widgets/home/product_cart_vertical.dart';
-import 'package:flutter_application_1/features/shop/screens/home/home.dart';
 import 'package:flutter_application_1/navigation_bar.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:get/get.dart';
@@ -29,7 +28,7 @@ class Wishlist extends StatelessWidget {
            ),
            body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(BSizes.defaultSpace),
+              padding: const EdgeInsets.all(BSizes.defaultSpace),
               child: Column(
                 children: [
                   BGridViewLayout(itemCount: 4, itemBuilder: (_,index)=>const BProductCardVertical())

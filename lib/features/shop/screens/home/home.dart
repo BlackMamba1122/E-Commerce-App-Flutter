@@ -7,9 +7,11 @@ import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
 import 'package:flutter_application_1/features/shop/screens/home/widget/home_app_bar.dart';
 import 'package:flutter_application_1/features/shop/screens/home/widget/home_categories.dart';
 import 'package:flutter_application_1/features/shop/screens/home/widget/home_slider.dart';
+import 'package:flutter_application_1/features/shop/screens/viewall/ViewAll.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,7 +34,8 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         BSectionHeading(title: 'Popular Categories',showActionButton: false,textColor: BColors.white,),
                         SizedBox(height: BSizes.spaceBtwItems),
-                        HomeCategory()
+                        HomeCategory(),
+                        SizedBox(height: BSizes.spaceBtwSections,),
                       ],
                     ),
                   )
@@ -45,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const BPromoSlider(banners: [BImages.promoBanner1,BImages.promoBanner2,BImages.promoBanner3],),
                   const SizedBox(height: BSizes.spaceBtwSections),
-                  BSectionHeading(title: 'Popular Products',onPressed: (){},),
+                  BSectionHeading(title: 'Popular Products',onPressed: ()=>Get.to(()=>const ViewallScreen()),),
                   const SizedBox(height: BSizes.spaceBtwItems),
                   BGridViewLayout(itemCount: 10, itemBuilder: (_,index) => const BProductCardVertical()),
                 ],

@@ -31,6 +31,8 @@ dependencies:
   # State Management
   get: "^4.6.5"
   get_storage: "^2.1.1"
+  readmore: "^2.2.0"
+  flutter_rating_bar: "^4.0.0"
 
 dev_dependencies:
   flutter_test:
@@ -46,8 +48,11 @@ flutter:
     - assets/image/on_boarding_images/
     - assets/image/verify_email/
     - assets/image/banners/
+    - assets/image/reviews/
     - assets/image/products/
     - assets/icons/categories/
+    - assets/icons/payment_methods/
+    - assets/image/content/
 
   fonts:
     - family: Poppins

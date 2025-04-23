@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/vertical_image_text.dart';
+import 'package:flutter_application_1/features/shop/screens/subCatogary/SubCatogaryScreen.dart';
 import 'package:flutter_application_1/utils/constants/imge_string.dart';
+import 'package:get/get.dart';
 
 class HomeCategory extends StatelessWidget {
   const HomeCategory({
@@ -31,7 +33,7 @@ class HomeCategory extends StatelessWidget {
           return VerticalImageText(
             image: category['image']!,
             title: category['title']!,
-            onTop: () {},
+            onTop: () =>Get.to(()=>const Subcatogaryscreen()),
           );
         },
       ),

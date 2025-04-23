@@ -13,17 +13,13 @@ class PrimaryHeaderConatiner extends StatelessWidget {
     return CurvedEdgeWidget(
       child: Container(
       color: BColors.primary,
-      padding: const EdgeInsets.all(0),
-      child: SizedBox(
-      height: 400,
       child: Stack(
       children: [
       Positioned(top:-150, right: -250, child: CircleConatiner(backgroundColor: BColors.textWhite.withOpacity(0.1),radius:400,height:400,width:400)),
       Positioned(top: 100, right: -300, child: CircleConatiner(backgroundColor: BColors.textWhite.withOpacity(0.1),radius:400,height:400,width:400)),
       child,
-    ],
+          ],
               ),
-            ),
           ),
     );
   }

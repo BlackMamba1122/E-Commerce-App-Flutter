@@ -3,6 +3,9 @@ import 'package:flutter_application_1/common/widgets/appbar/appbar.dart';
 import 'package:flutter_application_1/common/widgets/appbar/cart_menu_icon.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/text_string.dart';
+import 'package:get/get.dart';
+
+import '../../cart/cart.dart';
 
 
 class HomeAppBar extends StatelessWidget {
@@ -20,7 +23,7 @@ class HomeAppBar extends StatelessWidget {
       ],
     ),
     actions: [
-      CartCounterIcon(onPressed: (){})
+      CartCounterIcon(onPressed: ()=>Get.to(()=>const CartScreen()))
     ],
     );
   }

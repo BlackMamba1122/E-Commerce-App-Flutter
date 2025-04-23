@@ -8,10 +8,12 @@ import 'package:flutter_application_1/common/widgets/home/product_cart_vertical.
 import 'package:flutter_application_1/common/widgets/home/search_bar.dart';
 import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
 import 'package:flutter_application_1/common/widgets/store/tabbar.dart';
+import 'package:flutter_application_1/features/shop/screens/viewall/allBrand.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
+import 'package:get/get.dart';
 
 class Store extends StatelessWidget {
   const Store({super.key});
@@ -43,7 +45,7 @@ class Store extends StatelessWidget {
                     const SizedBox(height: BSizes.spaceBtwItems,),
                     const BSearchBar(),
                     const SizedBox(height: BSizes.spaceBtwSections,),
-                    BSectionHeading(title: 'Features Brand',onPressed: (){}),
+                    BSectionHeading(title: 'Features Brand',onPressed: ()=>Get.to(()=>const AllBrandScreen())),
                     const SizedBox(height: BSizes.spaceBtwItems/1.5,),
                     BGridViewLayout(itemCount: 4,mainAxisExtent: 80, itemBuilder: (_,index){
                       return BBrandCart(showBorder: true,onTap: (){},);

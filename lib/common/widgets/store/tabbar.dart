@@ -19,8 +19,8 @@ class BTabBar extends StatelessWidget implements PreferredSizeWidget {
         indicatorColor: BColors.primary,
         labelColor: dark ? BColors.white : BColors.primary,
         unselectedLabelColor: BColors.darkGrey,
-      ), // TabBar
-    ); // Material
+      ),
+    );
   }
 
   @override

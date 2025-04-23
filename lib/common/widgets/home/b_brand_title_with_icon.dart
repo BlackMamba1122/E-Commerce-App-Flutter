@@ -30,7 +30,7 @@ class BBrandTitle extends StatelessWidget {
             ),
         ),
         const SizedBox(width: BSizes.xs),
-        const Icon(Iconsax.verify,color: BColors.primary,size: BSizes.iconxs,)
+        const Icon(Iconsax.verify5,color: BColors.primary,size: BSizes.iconxs,)
       ],
     );
   }
