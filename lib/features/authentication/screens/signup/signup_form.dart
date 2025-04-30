@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/features/authentication/screens/signup/signup_controller.dart';
+import 'package:flutter_application_1/features/authentication/controllers/signup_controller.dart';
 import 'package:flutter_application_1/features/authentication/screens/signup/verify_email.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
@@ -80,23 +80,27 @@ class SignupForm extends StatelessWidget {
           ),
           const SizedBox(height: BSizes.spaceBtwInputFields),
           //pass
-          TextFormField(
-            controller: controller.password,
-            validator: (value) => BValidator.validatePassword(value),
-            obscureText: true,
-            decoration: const InputDecoration(
-              labelText: BTexts.password,
-              prefixIcon: Icon(Iconsax.password_check),
-              suffixIcon: Icon(Iconsax.eye_slash),
+          Obx(
+            ()=> TextFormField(
+              controller: controller.password,
+              validator: (value) => BValidator.validatePassword(value),
+              obscureText: controller.hidePass.value,
+              decoration: InputDecoration(
+                labelText: BTexts.password,
+                prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                    onPressed:() =>controller.hidePass.value =!controller.hidePass.value,
+                    icon: controller.hidePass.value ? Icon(Iconsax.eye_slash):Icon(Iconsax.eye)),
+              ),
             ),
           ),
           const SizedBox(height: BSizes.spaceBtwSections),
           Row(
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 24,
                 height: 24,
-                child: Icon(Iconsax.tick_circle),
+                child: Obx(()=> Checkbox(value: controller.Privacy.value, onChanged: (value) {controller.Privacy.value=!controller.Privacy.value;})),
               ),
               const SizedBox(width: BSizes.spaceBtwItems),
               Text.rich(
@@ -136,8 +140,7 @@ class SignupForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () =>Get.to(()=> const VerifyEmail()),
-
+              onPressed: () => controller.signup(),
 //                if (controller.signupFormKey.currentState!.validate()) {
 //                  controller.signup();
 //                }

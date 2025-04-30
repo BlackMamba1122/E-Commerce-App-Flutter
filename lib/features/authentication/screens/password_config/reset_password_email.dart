@@ -7,9 +7,11 @@ import 'package:flutter_application_1/utils/constants/text_string.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 import 'package:get/get.dart';
 
-class ResetPasswordEmail extends StatelessWidget {
-  const ResetPasswordEmail({super.key});
+import '../../controllers/forget_password_controller.dart';
 
+class ResetPasswordEmail extends StatelessWidget {
+  const ResetPasswordEmail({super.key, required this.email});
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +27,8 @@ class ResetPasswordEmail extends StatelessWidget {
           child: Column(
             children: [
               Image(image: const AssetImage(BImages.verifyEmail), width: BHelperFunctions.screenWidth()*0.6),
+              const SizedBox(height: BSizes.spaceBtwSections),
+              Text(email,style: Theme.of(context).textTheme.bodyMedium,textAlign: TextAlign.center,),
               const SizedBox(height: BSizes.spaceBtwItems),
               Text(BTexts.changeYourPasswordTitle, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.center),
               const SizedBox(height: BSizes.spaceBtwItems),
@@ -33,10 +37,10 @@ class ResetPasswordEmail extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()=>Get.to(()=>const LoginScreen()),
+                  onPressed: ()=>Get.offAll(()=>const LoginScreen()),
                   child: const Text('Done'))),
               const SizedBox(height: BSizes.spaceBtwItems),
-              SizedBox(width: double.infinity, child: TextButton(onPressed: (){}, child: const Text(BTexts.resendEmail))),
+              SizedBox(width: double.infinity, child: TextButton(onPressed: ()=>forgetPasswordController.instance.resendEmail(email), child: const Text(BTexts.resendEmail))),
               const SizedBox(height: BSizes.spaceBtwItems),
             ],
           ),

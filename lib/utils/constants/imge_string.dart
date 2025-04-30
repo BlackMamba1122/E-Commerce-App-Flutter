@@ -159,4 +159,7 @@ static const String complete = "assets/image/verify_email/Complete.gif";
   static const String paystack = "assets/icons/payment_methods/paystack.png";
   static const String paytm = "assets/icons/payment_methods/paytm.png";
   static const String successfulPaymentIcon = "assets/icons/payment_methods/successful_payment_icon.png";
+
+
+  static const String docker = "assets/image/animations/141594-animation-of-docer.json";
 }

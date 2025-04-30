@@ -48,11 +48,13 @@ class ProductDeatil extends StatelessWidget {
                   SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () {}, child: const Text('CheckOut'))),
+                          onPressed: () {}, child: const Text('CheckOut'))
+                  ),
                   //description
                   const SizedBox(
                     height: BSizes.spaceBtwSections,
                   ),
+                  //description
                   const BSectionHeading(
                     title: 'Description',
                     showActionButton: false,
@@ -90,12 +92,59 @@ class ProductDeatil extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: BSizes.spaceBtwSections,
+                    height: BSizes.spaceBtwItems,
                   ),
+                  const Divider(),
+                  const SizedBox(
+                    height: BSizes.spaceBtwItems,
+                  ),
+                  const ARButton(),
                 ],
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ARButton extends StatelessWidget {
+  const ARButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: GestureDetector(
+        onTap: () {},
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.deepPurpleAccent, Colors.cyanAccent],
+            ),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.cyanAccent.withOpacity(0.6),
+                blurRadius: 10,
+                offset: Offset(0, 4),
+              )
+            ],
+          ),
+          alignment: Alignment.center,
+          child: const Text(
+            'Launch AR',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              letterSpacing: 1.2,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );

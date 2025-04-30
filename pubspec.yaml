@@ -16,13 +16,16 @@ dependencies:
   intl: "0.18.1"
   logger: "2.0.1"
   url_launcher: "^6.1.12"
-  connectivity_plus: ^6.0.3
+  connectivity_plus: ^5.0.1
   lottie: "^2.7.0"
+  shimmer: ^3.0.0
   flutter_native_splash: ^2.3.2
   smooth_page_indicator: ^1.1.0
   carousel_slider: ^4.2.1
 
   firebase_core: ^3.1.0
+  firebase_auth: ^5.5.2
+  cloud_firestore: ^5.6.6
 
   # Icons
   iconsax: "^0.0.8"
@@ -33,6 +36,9 @@ dependencies:
   get_storage: "^2.1.1"
   readmore: "^2.2.0"
   flutter_rating_bar: "^4.0.0"
+  image_picker: ^1.1.2
+  firebase_storage: ^12.4.5
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +59,7 @@ flutter:
     - assets/icons/categories/
     - assets/icons/payment_methods/
     - assets/image/content/
+    - assets/image/animations/
 
   fonts:
     - family: Poppins
