@@ -3,11 +3,14 @@ import 'package:flutter_application_1/common/widgets/appbar/appbar.dart';
 import 'package:flutter_application_1/common/widgets/home/primary_header_conatiner.dart';
 import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
 import 'package:flutter_application_1/common/widgets/settings/MenuTile.dart';
+import 'package:flutter_application_1/data/repositories/banner_repository.dart';
+import 'package:flutter_application_1/data/repositories/category_repository.dart';
 import 'package:flutter_application_1/features/personalization/screens/address/UserAddressScreen.dart';
 import 'package:flutter_application_1/features/shop/screens/cart/cart.dart';
 import 'package:flutter_application_1/features/shop/screens/order/OrderScreen.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
+import 'package:flutter_application_1/utils/dummy_data.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -19,6 +22,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c =BannerRepository.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -47,7 +51,8 @@ class SettingScreen extends StatelessWidget {
                   const SizedBox (height: BSizes.spaceBtwSections),
                   const BSectionHeading (title: 'App Settings', showActionButton: false),
                   const SizedBox(height: BSizes.spaceBtwItems),
-                  const BSettingMenuTile (icon: Iconsax.document_upload, title: 'Load Data', subtitle: 'Upload Data to your Cloud Firebase'),
+
+                  BSettingMenuTile (icon: Iconsax.document_upload, title: 'Load Data', subtitle: 'Upload Data to your Cloud Firebase',onTap:()=>c.uploadDummyData(DummyData.banners)),
                   BSettingMenuTile(
                     icon: Iconsax.location,
                     title: 'Geolocation',

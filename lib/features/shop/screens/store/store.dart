@@ -8,6 +8,8 @@ import 'package:flutter_application_1/common/widgets/home/product_cart_vertical.
 import 'package:flutter_application_1/common/widgets/home/search_bar.dart';
 import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
 import 'package:flutter_application_1/common/widgets/store/tabbar.dart';
+import 'package:flutter_application_1/features/shop/controllers/category_controller.dart';
+import 'package:flutter_application_1/features/shop/models/category_model.dart';
 import 'package:flutter_application_1/features/shop/screens/viewall/allBrand.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/imge_string.dart';
@@ -20,8 +22,9 @@ class Store extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories=CategoryController.instance.featuredCategoies;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: BAppBar(
           title: Text('Store',style: Theme.of(context).textTheme.headlineMedium,),
@@ -54,36 +57,26 @@ class Store extends StatelessWidget {
                   ],
                 ),
                 ),
-                bottom: const BTabBar(
-                  tabs: [
-                    Tab(child: Text('Sports')),
-                    Tab(child: Text('Furniture')),
-                    Tab(child: Text('Electonics')),
-                    Tab(child: Text('Clothes')),
-                    Tab(child: Text('Cosmatics')),
-                  ]),
+                bottom: BTabBar(
+                  tabs: categories.map((category)=>Tab(child: Text(category.name))).toList(),
+                ),
                 )
           ]; 
           }, 
-          body: const TabBarView(
-            children: [
-              BCategoryTab(),
-              BCategoryTab(),
-              BCategoryTab(),
-              BCategoryTab(),
-              BCategoryTab(),
-            ],
-          )),
+          body: TabBarView(
+            children: categories.map((category)=>BCategoryTab(category: category)).toList(),
       ),
+    )
+      )
     );
   }
 }
 
 class BCategoryTab extends StatelessWidget {
   const BCategoryTab({
-    super.key,
+    super.key, required this.category,
   });
-
+  final CategoryModel category;
   @override
   Widget build(BuildContext context) {
     return ListView(

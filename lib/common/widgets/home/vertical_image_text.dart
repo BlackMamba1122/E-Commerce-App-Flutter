@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/common/widgets/store/b_circular_image.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 
 class VerticalImageText extends StatelessWidget {
   const VerticalImageText({
-    super.key, required this.image, required this.title, this.textColor=BColors.white, this.backgroundColor=BColors.white, this.onTop,
+    super.key, required this.image, required this.title, this.textColor=BColors.white, this.backgroundColor=BColors.white, this.onTop, this.isNetworkImage=true,
   });
   final String image,title;
   final Color textColor;
   final Color? backgroundColor;
   final void Function()? onTop;
+  final bool isNetworkImage;
   @override
   Widget build(BuildContext context) {
     final dark =BHelperFunctions.isDarkMode(context);
@@ -20,17 +22,13 @@ class VerticalImageText extends StatelessWidget {
         padding: const EdgeInsets.only(right: BSizes.spaceBtwItems),
         child: Column(
           children: [
-            Container(
-              width: 56,
-              height: 56,
-              padding: const EdgeInsets.all(BSizes.sm), //
-              decoration: BoxDecoration(
-                color: backgroundColor ?? (dark ? BColors.black : BColors.white),
-                borderRadius: BorderRadius.circular(100)
-              ),
-              child: Center(
-                child: Image(image: AssetImage(image),fit: BoxFit.cover,),
-              ),
+            BCircularImage(
+              image: image,
+              fit: BoxFit.fitWidth,
+              padding: BSizes.sm*1.4,
+              isNetworkImage: true,
+              backgroundColor: backgroundColor,
+              // overlayColor: dark ? BColors.light : BColors.dark,
             ),
             const SizedBox(height: BSizes.spaceBtwItems/2),
             SizedBox(
