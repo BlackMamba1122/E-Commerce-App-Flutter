@@ -34,7 +34,7 @@ class HomeCategory extends StatelessWidget {
                 return VerticalImageText(
                   image: category.image,
                   title: category.name,
-                  onTop: () => Get.to(() => const Subcatogaryscreen()),
+                  onTop: () => Get.to(() => Subcatogaryscreen(category: category,)),
                 );
               },
             ),

@@ -34,11 +34,11 @@ class BCircularImage extends StatelessWidget {
             color: overlayColor,
             imageUrl: image,
             progressIndicatorBuilder: (context,url,downloadProgress)=>BShimmerEffect(width: 55, height: 55,radius: 55,),
-            errorWidget: (context,url,error)=>Icon(Icons.error),
+            errorWidget: (context,url,error)=>Icon(Icons.access_alarm_sharp),
           )
          : Image(
           fit: fit,
-          image: isNetworkImage ? NetworkImage(image) : AssetImage(image),
+          image: AssetImage(image),
           color: overlayColor,
           ),
         ),

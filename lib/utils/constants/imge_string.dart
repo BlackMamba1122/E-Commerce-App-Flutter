@@ -162,4 +162,5 @@ static const String complete = "assets/image/verify_email/Complete.gif";
 
 
   static const String docker = "assets/image/animations/141594-animation-of-docer.json";
+  static const String pencilAnimation = "assets/image/animations/140429-pencil-drawing.json";
 }
