@@ -28,7 +28,7 @@ class BBrandShowCase extends StatelessWidget {
           children: [
             BBrandCart(showBorder: false,onTap: (){}, brand: brand,),
             const SizedBox(height: BSizes.spaceBtwItems),
-            Row( children: images.map((image)=> brandTopProductImageWidget(image, context)).toList())
+            Row( children: images.map((image)=> brandTopProductImageWidget(image, context,true)).toList())
           ],
         ),
       ),
@@ -37,7 +37,7 @@ class BBrandShowCase extends StatelessWidget {
 }
 
 
-Widget brandTopProductImageWidget(String image,context)
+Widget brandTopProductImageWidget(String image,context,bool isNetworkImage)
 {
   return Expanded(
                 child: CircleConatiner(
@@ -45,7 +45,8 @@ Widget brandTopProductImageWidget(String image,context)
                   backgroundColor: BHelperFunctions.isDarkMode(context) ? BColors.darkerGrey : BColors.light,
                   margin: const EdgeInsets.only(right: BSizes.sm),
                   padding: const EdgeInsets.all(BSizes.md),
-                  child:  Image(fit: BoxFit.contain,image: AssetImage(image)),
+                  child:  Image(fit: BoxFit.contain,image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider),
+
                 ),
               );
 }

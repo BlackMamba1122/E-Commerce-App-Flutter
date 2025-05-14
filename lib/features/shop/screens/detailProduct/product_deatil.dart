@@ -9,6 +9,7 @@ import 'package:flutter_application_1/common/widgets/home/product_price.dart';
 import 'package:flutter_application_1/common/widgets/home/product_title.dart';
 import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
 import 'package:flutter_application_1/common/widgets/store/b_circular_image.dart';
+import 'package:flutter_application_1/features/shop/controllers/cart_controller.dart';
 import 'package:flutter_application_1/features/shop/controllers/image_controller.dart';
 import 'package:flutter_application_1/features/shop/controllers/product_controller.dart';
 import 'package:flutter_application_1/features/shop/controllers/variation_controller.dart';
@@ -22,6 +23,7 @@ import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../../common/widgets/home/circle_conatiner.dart';
@@ -32,7 +34,7 @@ class ProductDeatil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomAddtoCart(),
+      bottomNavigationBar: BottomAddtoCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -296,7 +298,7 @@ class ProductMetaData extends StatelessWidget {
             ),
             if(product.productType == ProductType.single.toString() && product.salePrice>0)
               Text(
-                '${product.price}',
+    NumberFormat('#,##0', 'en_US').format(product.price),
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall!
@@ -359,7 +361,7 @@ class ProductAttributes extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
-final controller=Get.put(VariationCobtroller());
+final controller=Get.put(VariationController());
     final dark = BHelperFunctions.isDarkMode(context);
     return Obx(()
       => Column(
@@ -393,7 +395,7 @@ final controller=Get.put(VariationCobtroller());
                             ),
                             if(controller.selectedVariation.value.salePrice>0)
                             Text(
-                              'Rs. ${controller.selectedVariation.value.salePrice}',
+                              NumberFormat('#,##0', 'en_US').format(controller.selectedVariation.value.salePrice),
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall!
@@ -403,7 +405,7 @@ final controller=Get.put(VariationCobtroller());
                               width: BSizes.spaceBtwItems,
                             ),
                              BProductPrice(
-                              price: controller.getVariationPrice(),
+                              price: NumberFormat('#,##0', 'en_US').format(controller.getVariationPrice()),
                             ),
                           ],
                         ),
@@ -516,10 +518,12 @@ class BChoiceChip extends StatelessWidget {
 }
 
 class BottomAddtoCart extends StatelessWidget {
-  const BottomAddtoCart({super.key});
-
+  const BottomAddtoCart({super.key, required this.product});
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    final controller=CartController.instance;
+    controller.updateAlreadyAddedProductCount(product);
     final dark = BHelperFunctions.isDarkMode(context);
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -530,47 +534,51 @@ class BottomAddtoCart extends StatelessWidget {
             topLeft: Radius.circular(BSizes.cardRadiusLg),
             topRight: Radius.circular(BSizes.cardRadiusLg),
           )),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              const BCircluarIcon(
-                icon: Iconsax.minus,
-                backgroundColor: BColors.darkGrey,
-                width: 40,
-                height: 40,
-                color: BColors.white,
+      child: Obx(()
+        => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+              Row(
+                children: [
+                   BCircluarIcon(
+                    icon: Iconsax.minus,
+                    backgroundColor: BColors.darkGrey,
+                    width: 40,
+                    height: 40,
+                    color: BColors.white,
+                    onPressed: controller.productQuantityInCart.value <1?null:()=>controller.productQuantityInCart--,
+                  ),
+                  const SizedBox(
+                    width: BSizes.spaceBtwItems,
+                  ),
+                  Text(
+                    controller.productQuantityInCart.value.toString(),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  const SizedBox(
+                    width: BSizes.spaceBtwItems,
+                  ),
+                   BCircluarIcon(
+                    icon: Iconsax.add,
+                    backgroundColor: BColors.black,
+                    width: 40,
+                    height: 40,
+                    color: BColors.white,
+                    onPressed: ()=>controller.productQuantityInCart++,
+                  ),
+                ],
               ),
-              const SizedBox(
-                width: BSizes.spaceBtwItems,
-              ),
-              Text(
-                '2',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-              const SizedBox(
-                width: BSizes.spaceBtwItems,
-              ),
-              const BCircluarIcon(
-                icon: Iconsax.add,
+            ElevatedButton(
+                onPressed:controller.productQuantityInCart<1 ? null : ()=>controller.addToCart(product),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(BSizes.md),
                 backgroundColor: BColors.black,
-                width: 40,
-                height: 40,
-                color: BColors.white,
+                side: const BorderSide(color: BColors.black),
               ),
-            ],
-          ),
-          ElevatedButton(
-              onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(BSizes.md),
-              backgroundColor: BColors.black,
-              side: const BorderSide(color: BColors.black),
+                child: const Text('Add to Cart'),
             ),
-              child: const Text('Add to Cart'),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

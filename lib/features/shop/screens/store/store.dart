@@ -42,7 +42,7 @@ class Store extends StatelessWidget {
                   .textTheme
                   .headlineMedium,),
               actions: [
-                CartCounterIcon(onPressed: () {})
+                CartCounterIcon(iconColor: BColors.white,counterBgColor: BColors.black,counterTextColor: BColors.white,)
               ],
             ),
             body: NestedScrollView(

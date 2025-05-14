@@ -3,8 +3,10 @@ import 'package:flutter_application_1/features/shop/models/product_model.dart';
 import 'package:flutter_application_1/features/shop/models/product_variation_modle.dart';
 import 'package:get/get.dart';
 
-class VariationCobtroller extends GetxController {
-  static VariationCobtroller get instance => Get.find();
+import 'cart_controller.dart';
+
+class VariationController extends GetxController {
+  static VariationController get instance => Get.find();
 
   RxMap selectedAttributes = {}.obs;
   RxString variationStockStatus = ''.obs;
@@ -23,6 +25,11 @@ class VariationCobtroller extends GetxController {
     if(selectedVariation.image.isNotEmpty){
       ImageController.instance.selectedProductImage.value = selectedVariation.image;
     }
+    if(selectedVariation.id.isNotEmpty) {
+      final cartController=CartController.instance;
+      cartController.productQuantityInCart.value = cartController.getVariationQuantityInCart(product.id, selectedVariation.id);
+    }
+    
     this.selectedVariation.value = selectedVariation;
     getProductVariationStockStatus();
   }
@@ -49,13 +56,13 @@ class VariationCobtroller extends GetxController {
     return avaliableVariationAttributeValues;
   }
 
-  String getVariationPrice() {
-    return (selectedVariation.value.salePrice > 0 ? selectedVariation.value.salePrice : selectedVariation.value.price).toString();
+   getVariationPrice() {
+    return (selectedVariation.value.salePrice > 0 ? selectedVariation.value.salePrice : selectedVariation.value.price);
   }
   void getProductVariationStockStatus() {
     variationStockStatus.value = selectedVariation.value.stock > 0 ?'In Stock' : 'Out of Stock';
   }
-  void ResetSelectedAttributes() {
+  void resetSelectedAttributes() {
     selectedAttributes.clear();
     selectedVariation.value = ProductVariationModel.empty();
     variationStockStatus.value = '';

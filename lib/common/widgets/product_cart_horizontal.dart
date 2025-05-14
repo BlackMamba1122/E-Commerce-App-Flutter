@@ -17,6 +17,7 @@ import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 
 class BProductCardHorizontal extends StatelessWidget {
   const BProductCardHorizontal({super.key, required this.product});
@@ -84,13 +85,13 @@ final ProductModel product;
                                 Padding(
                                   padding: EdgeInsets.only(left: BSizes.sm),
                                   child: Text(
-                                    product.price.toString(),
+                                    NumberFormat('#,##0', 'en_US').format(product.price),
                                     style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                                   ),
                                 ),
                               Padding(
                                 padding: EdgeInsets.only(left: BSizes.sm),
-                                child: BProductPrice(price: controller.getProductPrice(product)),
+                                child: BProductPrice(price: NumberFormat('#,##0', 'en_US').format(controller.getProductPrice(product)),),
                               ),
                             ],
                           ),

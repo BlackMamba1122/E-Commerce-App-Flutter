@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^12.4.5
   cached_network_image: ^3.3.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,15 +51,15 @@ flutter:
 
   assets:
     - assets/logos/
-    - assets/icons/
+#    - assets/icons/
     - assets/image/on_boarding_images/
     - assets/image/verify_email/
     - assets/image/banners/
     - assets/image/reviews/
-    - assets/image/products/
-    - assets/icons/categories/
+#    - assets/image/products/
+#    - assets/icons/categories/
     - assets/icons/payment_methods/
-    - assets/icons/brands/
+#    - assets/icons/brands/
     - assets/image/content/
     - assets/image/animations/
 

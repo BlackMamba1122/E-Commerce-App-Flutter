@@ -25,7 +25,6 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c =CategoryRepository.instance;
     final controller=Get.put(SettingsController());
     return Scaffold(
       body: SingleChildScrollView(
@@ -56,7 +55,7 @@ class SettingScreen extends StatelessWidget {
                   const BSectionHeading (title: 'App Settings', showActionButton: false),
                   const SizedBox(height: BSizes.spaceBtwItems),
 
-                  BSettingMenuTile (icon: Iconsax.document_upload, title: 'Load Data', subtitle: 'Upload Data to your Cloud Firebase',onTap:()=>c.uploadDummyData(DummyData.categories)),
+                  BSettingMenuTile (icon: Iconsax.document_upload, title: 'Load Data', subtitle: 'Upload Data to your Cloud Firebase',onTap:(){}),
                   BSettingMenuTile(
                     icon: Iconsax.location,
                     title: 'Geolocation',

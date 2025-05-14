@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/features/shop/models/brand_category_model.dart';
 import 'package:flutter_application_1/features/shop/models/brand_model.dart';
 import 'package:flutter_application_1/utils/exceptions/firebase_exceptions.dart';
 import 'package:flutter_application_1/utils/exceptions/format_exceptions.dart';
@@ -31,7 +32,7 @@ class BrandRepository extends GetxController {
     try {
       QuerySnapshot brandCategoryQuery = await _db.collection('BrandCategory').where('categoryId', isEqualTo: categoryId).get();
       List<String> brandIds = brandCategoryQuery.docs.map((doc) => doc['brandId'] as String).toList();
-      final brandsQuery = await _db.collection('Brands').where(FieldPath.documentId, whereIn: brandIds).limit(2).get();
+      final brandsQuery = await _db.collection('Brands').where(FieldPath.documentId, whereIn: brandIds).limit(3).get();
       List<BrandModel> brands = brandsQuery.docs.map((doc) => BrandModel.fromSnapShot(doc)).toList();
       return brands;
     } on FirebaseException catch (e) {
@@ -60,7 +61,23 @@ class BrandRepository extends GetxController {
 // Assign URL to Category. image attribute
         brand.image = url;
 // Store Category in Firestore
-        await _db.collection ("Brands").doc().set(brand.toJson());
+        await _db.collection ("Brands").doc(i.toString()).set(brand.toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<void> uploadDummyData2 (List<BrandCategoryModel> brands) async {
+    int i=0;
+    try {
+      for (var brand in brands) {
+        i++;
+        await _db.collection ("BrandCategory").doc(i.toString()).set(brand.toJson());
       }
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;

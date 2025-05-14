@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/features/shop/models/product_category_model.dart';
 import 'package:flutter_application_1/features/shop/models/product_model.dart';
 import 'package:flutter_application_1/utils/constants/enums.dart';
 import 'package:flutter_application_1/utils/exceptions/firebase_exceptions.dart';
@@ -111,6 +112,7 @@ class ProductRepository extends GetxController {
   /// Upload dummy data to the Cloud Firebase
   Future<void> uploadDummyData(List<ProductModel> products) async {
     try {
+        final Map<String, String> uploadedBrands = {};
 // Upload all the products along with their images
       final storage = Get.put(TFirebaseStorageService());
 // Loop through each product
@@ -122,8 +124,8 @@ class ProductRepository extends GetxController {
           final fileName = path.basename(product.thumbnail.toString());
   // Upload image and get its URL
           final url = await storage.uploadImageData('Products/Images', thumbnail, fileName);
-          product.thumbnail = url;
           uploadedImagesCache[product.thumbnail] = url;
+          product.thumbnail = url;
         }
         else {
           product.thumbnail = uploadedImagesCache[product.thumbnail]!;
@@ -131,13 +133,20 @@ class ProductRepository extends GetxController {
 // Assign URL to product. thumbnail attribute
 // Product list of images
         //brand
-        if (product.brand!.image != null && product.brand!.image !.isNotEmpty)
-        {
-          final assetImage = await storage.getImageDataFromAssets(product.brand!.image);
-          final fileNamee = path.basename(product.brand!.image.toString());
+        if (product.brand!.image != null && product.brand!.image !.isNotEmpty) {
+          if (uploadedBrands.containsKey(product.brand!.image)) {
+            product.brand!.image = uploadedBrands[product.brand!.image]!;
+          }
+          else {
+            final assetImage = await storage.getImageDataFromAssets(
+                product.brand!.image);
+            final fileNamee = path.basename(product.brand!.image.toString());
 // Upload image and get its URL
-          final urlBanner = await storage.uploadImageData('Products/Images', assetImage, fileNamee);
-          product.brand!.image = urlBanner;
+            final urlBanner = await storage.uploadImageData(
+                'Products/Images', assetImage, fileNamee);
+            uploadedBrands[product.brand!.image] = urlBanner;
+            product.brand!.image = urlBanner;
+          }
         }
         if (product.images != null && product.images !.isNotEmpty) {
           List<String> imagesUrl = [];
@@ -174,8 +183,8 @@ class ProductRepository extends GetxController {
               final url = await storage.uploadImageData(
                   'Products/Images', assetImage, fileNameee);
 // Assign URL to variation.image attribute
-              variation.image = url;
               uploadedImagesCache[variation.image] = url;
+              variation.image = url;
             }
           }
         }
@@ -192,6 +201,19 @@ class ProductRepository extends GetxController {
     }
   }
 
-
-
+  Future<void> uploadDummyData2 (List<ProductCategoryModel> brands) async {
+    int i=0;
+    try {
+      for (var brand in brands) {
+        i++;
+        await _db.collection ("ProductCategory").doc(i.toString()).set(brand.toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 }

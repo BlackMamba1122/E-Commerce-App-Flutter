@@ -7,6 +7,7 @@ import 'package:flutter_application_1/common/widgets/home/circular_Icon.dart';
 import 'package:flutter_application_1/common/widgets/home/product_price.dart';
 import 'package:flutter_application_1/common/widgets/home/product_title.dart';
 import 'package:flutter_application_1/common/widgets/home/shadow.dart';
+import 'package:flutter_application_1/features/shop/controllers/cart_controller.dart';
 import 'package:flutter_application_1/features/shop/controllers/product_controller.dart';
 import 'package:flutter_application_1/features/shop/models/product_model.dart';
 import 'package:flutter_application_1/features/shop/screens/detailProduct/product_deatil.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 
 import '../../../features/shop/screens/wishlist/favourite_icon.dart';
 
@@ -43,6 +45,7 @@ class BProductCardVertical extends StatelessWidget {
           children: [
             CircleConatiner(
               height: 180,
+              width: 180,
               padding: const EdgeInsets.all(BSizes.sm),
               backgroundColor: dark ? BColors.dark : BColors.light,
               child: Stack(
@@ -87,7 +90,7 @@ class BProductCardVertical extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(left: BSizes.sm),
                                 child: Text(
-                                  product.price.toString(),
+                                NumberFormat('#,##0', 'en_US').format(product.price),
                                   style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                                 ),
                               ),
@@ -98,24 +101,56 @@ class BProductCardVertical extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.black,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(BSizes.cardRadiusMd),
-                          bottomRight: Radius.circular(BSizes.productImageRadius),
-                        )
-                      ),
-                      child: const SizedBox(
-                        width: BSizes.iconLg*1.2,
-                        height: BSizes.iconLg*1.2,
-                        child: Center(child: Icon(Iconsax.add,color: BColors.white))
-                        ),
-                    )
+                    ProductAddToCartButton(product: product,)
                   ],
                 )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ProductAddToCartButton extends StatelessWidget {
+  const ProductAddToCartButton({
+    super.key, required this.product,
+  });
+final ProductModel product;
+
+  @override
+  Widget build(BuildContext context) {
+    final cartController = CartController.instance;
+    return InkWell(
+      onTap: (){
+        if(product.productType == ProductType.single.toString()){
+          final cartItem = cartController.convertToCartItem(product, 1);
+          cartController.addOneToCart(cartItem);
+        }else {
+          Get.to(()=>ProductDeatil(product: product));
+        }
+      },
+      child: Obx(()
+        {
+          final quantity=cartController.getProductQuantityInCart(product.id);
+          bool isQuantity = quantity>0;
+          return Container(
+            decoration: BoxDecoration(
+                color: isQuantity ? BColors.primary : BColors.dark,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(BSizes.cardRadiusMd),
+                  bottomRight: Radius.circular(BSizes.productImageRadius),
+                )
+            ),
+            child: SizedBox(
+                width: BSizes.iconLg*1.2,
+                height: BSizes.iconLg*1.2,
+                child: Center(child: isQuantity
+                    ? Text(quantity.toString(),style: Theme.of(context).textTheme.bodyLarge!.apply(color: BColors.white),)
+                    :Icon(Iconsax.add,color: BColors.white)
+                )
+            ),
+          );
+        }
       ),
     );
   }

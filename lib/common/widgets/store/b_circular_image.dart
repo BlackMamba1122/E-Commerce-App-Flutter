@@ -7,7 +7,7 @@ import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 
 class BCircularImage extends StatelessWidget {
   const BCircularImage({
-    super.key, this.fit=BoxFit.cover, required this.image, this.overlayColor, this.backgroundColor, this.width=56,  this.height=56, this.padding = BSizes.sm, this.isNetworkImage=false,
+    super.key, this.fit=BoxFit.contain, required this.image, this.overlayColor, this.backgroundColor, this.width=56,  this.height=56, this.padding = BSizes.sm, this.isNetworkImage=false,
   });
   final BoxFit? fit;
   final String image;

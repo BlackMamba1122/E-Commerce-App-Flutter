@@ -20,7 +20,9 @@ class ProductModel {
   String productType;
   List<ProductAttributeModel>? productAttributes;
   List<ProductVariationModel>? productVariations;
-
+  bool? isAr;
+  String? ar;
+  bool? arType;
 
   ProductModel({
 
@@ -42,6 +44,9 @@ class ProductModel {
     this.description,
     this.productAttributes,
     this.productVariations,
+    this.ar='',
+    this.isAr=false,
+    this.arType=false,
   });
 
   /// Create Empty func for clean code
@@ -70,6 +75,9 @@ class ProductModel {
       'ProductType': productType,
       'ProductAttributes': productAttributes != null ? productAttributes !.map((e) => e.toJson()).toList() : [],
       'ProductVariations' : productVariations != null ? productVariations ! . map( (e) => e. toJson()). toList() : [],
+      'IsAr':isAr ?? false,
+      'Ar':ar ?? '',
+      'ArType':arType ?? false,
     };
   }
 
@@ -92,6 +100,9 @@ class ProductModel {
         images: data['Images'] != null ? List<String>. from(data['Images']) : [],
         productAttributes: (data['ProductAttributes'] as List<dynamic>).map((e) => ProductAttributeModel.fromJson(e) ).toList() ?? [],
         productVariations: (data['ProductVariations'] as List<dynamic>) .map( (e) => ProductVariationModel.fromJson(e)).toList() ?? [],
+      isAr: data['IsAr'] ?? false,
+      ar:data['Ar'] ?? '',
+      arType:data['ArType'] ?? false,
     ); // ProductModel
   }
 // Map Json-oriented document snapshot from Firebase to Model
@@ -113,6 +124,9 @@ class ProductModel {
       images: data[ 'Images' ] != null ? List<String>. from(data['Images' ]) : [],
       productAttributes: (data[ 'ProductAttributes' ] as List<dynamic>).map((e) => ProductAttributeModel.fromJson(e) ).toList(),
       productVariations: (data['ProductVariations' ] as List<dynamic>) .map( (e) => ProductVariationModel.fromJson(e)).toList(),
-    ); // ProductModel
+      isAr: data['IsAr'] ?? false,
+      ar:data['Ar'] ?? '',
+      arType:data['ArType'] ?? false,
+    );
   }
 }

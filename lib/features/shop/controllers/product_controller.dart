@@ -3,6 +3,7 @@ import 'package:flutter_application_1/features/shop/models/product_model.dart';
 import 'package:flutter_application_1/utils/constants/enums.dart';
 import 'package:flutter_application_1/utils/popups/loaders.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance =>Get.find();
@@ -43,7 +44,7 @@ class ProductController extends GetxController {
     double smallestPrice=double.infinity;
     double largestPrice=0.0;
     if(product.productType == ProductType.single.toString()){
-     return (product.salePrice>0 ? product.salePrice : product.price).toString();
+     return (product.salePrice>0 ? NumberFormat('#,##0', 'en_US').format(product.salePrice) : NumberFormat('#,##0', 'en_US').format(product.price)).toString();
     }
     else {
         for(var variation in product.productVariations!) {
@@ -55,10 +56,12 @@ class ProductController extends GetxController {
         }
       }
     if(smallestPrice==largestPrice) {
-      return largestPrice.toString();
+      return NumberFormat('#,##0', 'en_US').format(largestPrice).toString();
     }
     else {
-      return '$smallestPrice - $largestPrice';
+      final s=NumberFormat('#,##0', 'en_US').format(smallestPrice);
+      final l=NumberFormat('#,##0', 'en_US').format(largestPrice);
+      return '$s - $l';
     }
   }
   String? calculateSalePercentage(double originalPrice,double? salePrice) {
