@@ -25,7 +25,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = CartController.instance;
-    final dark = BHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: BAppBar(title: Text('Cart', style: Theme
           .of(context)
@@ -42,7 +41,7 @@ class CartScreen extends StatelessWidget {
         if (controller.cartItems.isEmpty) {
           return emptyWidget;
         } else {
-          return SingleChildScrollView(
+          return const SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.all(BSizes.defaultSpace),
               child: CartItemBuilder(),
@@ -51,11 +50,11 @@ class CartScreen extends StatelessWidget {
         }
       }
       ),
-      bottomNavigationBar: controller.cartItems.value.isEmpty ? SizedBox() :Padding(
+      bottomNavigationBar: controller.cartItems.value.isEmpty ? const SizedBox() :Padding(
         padding: const EdgeInsets.all(BSizes.defaultSpace),
         child: ElevatedButton(
           onPressed: () => Get.to(() => const CheckOutScreen()),
-          child: Obx(()=> Text('CheckOut  Rs.${controller.totalCartPrice.value}',)),
+          child: Obx(()=> Text('CheckOut  Rs.${NumberFormat('#,##0', 'en_US').format(controller.totalCartPrice.value)}',)),
         ),
       ),
     );
@@ -92,14 +91,14 @@ class CartItemBuilder extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              SizedBox(width: 70,),
+                              const SizedBox(width: 70,),
                               QunatityAddRemove(quantity: item.quantity,
                                 add: () => controller.addOneToCart(item),
                                 remove: ()=>controller.removeOneFromCart(item)
                               ),
                             ],
                           ),
-                          BProductPrice(price: NumberFormat('#,##0', 'en_US').format(item.price*item.quantity).toString())
+                          BProductPrice(price: NumberFormat('#,##0', 'en_US').format(item.price*item.quantity))
                         ],
                       )
                   ],

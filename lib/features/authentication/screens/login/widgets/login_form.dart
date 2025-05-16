@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/authentication/controllers/login_controller.dart';
 import 'package:flutter_application_1/features/authentication/screens/password_config/reset_password.dart';
 import 'package:flutter_application_1/features/authentication/screens/signup/signup.dart';
-import 'package:flutter_application_1/navigation_bar.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/constants/text_string.dart';
@@ -42,7 +41,7 @@ class LoginForm extends StatelessWidget {
                   prefixIcon: const Icon(Iconsax.password_check),
                   suffixIcon: IconButton(
                       onPressed:() =>controller.hidepass.value =!controller.hidepass.value,
-                      icon: controller.hidepass.value ? Icon(Iconsax.eye_slash):Icon(Iconsax.eye)),
+                      icon: controller.hidepass.value ? const Icon(Iconsax.eye_slash):const Icon(Iconsax.eye)),
                 ),
               ),
             ),

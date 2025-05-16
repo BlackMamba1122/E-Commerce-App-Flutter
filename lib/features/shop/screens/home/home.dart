@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/grid_layout.dart';
 import 'package:flutter_application_1/common/widgets/home/primary_header_conatiner.dart';
@@ -12,7 +11,6 @@ import 'package:flutter_application_1/features/shop/screens/home/widget/home_sli
 import 'package:flutter_application_1/features/shop/screens/viewall/ViewAll.dart';
 import 'package:flutter_application_1/utils/VerticalProductShimmer.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
-import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:get/get.dart';
 
@@ -68,8 +66,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: BSizes.spaceBtwItems),
                   Obx(() {
-                    if (controller.isLoading.value)
-                      return BVerticalProductShimmer();
+                    if (controller.isLoading.value) {
+                      return const BVerticalProductShimmer();
+                    }
                     if (controller.featuredProducts.isEmpty) {
                       return Center(
                           child: Text(

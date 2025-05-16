@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/authentication/controllers/signup_controller.dart';
-import 'package:flutter_application_1/features/authentication/screens/signup/verify_email.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/constants/text_string.dart';
@@ -90,7 +89,7 @@ class SignupForm extends StatelessWidget {
                 prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: IconButton(
                     onPressed:() =>controller.hidePass.value =!controller.hidePass.value,
-                    icon: controller.hidePass.value ? Icon(Iconsax.eye_slash):Icon(Iconsax.eye)),
+                    icon: controller.hidePass.value ? const Icon(Iconsax.eye_slash):const Icon(Iconsax.eye)),
               ),
             ),
           ),

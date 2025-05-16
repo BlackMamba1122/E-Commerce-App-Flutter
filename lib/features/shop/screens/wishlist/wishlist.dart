@@ -4,7 +4,6 @@ import 'package:flutter_application_1/common/widgets/home/circular_icon.dart';
 import 'package:flutter_application_1/common/widgets/home/grid_layout.dart';
 import 'package:flutter_application_1/common/widgets/home/product_cart_vertical.dart';
 import 'package:flutter_application_1/features/shop/controllers/favourite_controller.dart';
-import 'package:flutter_application_1/features/shop/models/product_model.dart';
 import 'package:flutter_application_1/navigation_bar.dart';
 import 'package:flutter_application_1/utils/VerticalProductShimmer.dart';
 import 'package:flutter_application_1/utils/constants/imge_string.dart';

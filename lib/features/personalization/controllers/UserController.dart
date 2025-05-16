@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/repositories/user_repo.dart';
 import 'package:flutter_application_1/features/personalization/models/UserModel.dart';
-import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

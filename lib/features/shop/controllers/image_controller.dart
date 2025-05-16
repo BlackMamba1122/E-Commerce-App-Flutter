@@ -31,13 +31,13 @@ class ImageController extends GetxController {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: BSizes.defaultSpace*2,horizontal: BSizes.defaultSpace),
+                padding: const EdgeInsets.symmetric(vertical: BSizes.defaultSpace*2,horizontal: BSizes.defaultSpace),
                 child: CachedNetworkImage(imageUrl: image,),
               ),
-              SizedBox(height: BSizes.spaceBtwSections,),
+              const SizedBox(height: BSizes.spaceBtwSections,),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: SizedBox(width: 150,child: OutlinedButton(onPressed: ()=>Get.back(),child: Text('Close'),),),
+                child: SizedBox(width: 150,child: OutlinedButton(onPressed: ()=>Get.back(),child: const Text('Close'),),),
               )
             ],
           ),

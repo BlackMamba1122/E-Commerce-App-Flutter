@@ -10,14 +10,14 @@ class HorizontalProductShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: BSizes.spaceBtwSections),
+      margin: const EdgeInsets.only(bottom: BSizes.spaceBtwSections),
       height: 120,
       child: ListView.separated(
           shrinkWrap: true,
           separatorBuilder: (_,__)=>const SizedBox(width: BSizes.spaceBtwItems),
           itemCount: itemCount,
           scrollDirection: Axis.horizontal,
-          itemBuilder: (_,__)=>Row(
+          itemBuilder: (_,__)=>const Row(
             mainAxisSize: MainAxisSize.min,
             children:[
               BShimmerEffect(width: 120, height: 120),

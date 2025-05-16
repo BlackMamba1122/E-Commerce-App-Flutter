@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/circle_conatiner.dart';
 import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
-import 'package:flutter_application_1/common/widgets/login/success_screen.dart';
+import 'package:flutter_application_1/features/personalization/controllers/address_controller.dart';
+import 'package:flutter_application_1/features/shop/controllers/cart_controller.dart';
 import 'package:flutter_application_1/features/shop/screens/cart/cart.dart';
-import 'package:flutter_application_1/navigation_bar.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
-import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
+import 'package:flutter_application_1/utils/helpers/helper_calculator.dart';
+import 'package:flutter_application_1/utils/popups/loaders.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../utils/helpers/helper_function.dart';
+import '../../controllers/checkout_controller.dart';
+import '../../controllers/order_controller.dart';
 
 class CheckOutScreen extends StatelessWidget {
   const CheckOutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller=CartController.instance;
+    final subTotal=controller.totalCartPrice.value;
+    final orderController=Get.put(OrderController());
+    final totalAmount =BPricingCalculator.calculateTotalPrice(subTotal, 'Pakistan');
     final dark = BHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: BAppBar(title: Text('CheckOut',style: Theme.of(context).textTheme.headlineSmall,),showArrow: true,),
@@ -52,8 +60,10 @@ class CheckOutScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(BSizes.defaultSpace),
         child: ElevatedButton(
-          onPressed: ()=>Get.to(()=>SuccessScreen(image: BImages.successfulPaymentIcon, title: 'Payment Successful', subtitle: 'Your Item will be Shifted Soon.', onPressed: ()=> Get.offAll(()=>const NavigationMenu()))),
-          child: const Text('CheckOut  Rs.8000',),
+          onPressed: subTotal>0 && AddressController.instance.selectedAddress.value.id.isNotEmpty
+          ? ()=>orderController.processorder(totalAmount)
+          : subTotal>0 ? ()=>BLoaders.warningSnackBar(title: 'Empty Cart',message: 'Add Items') :()=>BLoaders.warningSnackBar(title: 'Empty Address',message: 'Add Address'),
+          child: Text('CheckOut  Rs.${NumberFormat('#,##0', 'en_US').format(totalAmount)}',),
         ),
       ),
     );
@@ -105,13 +115,15 @@ class BillTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=CartController.instance;
+    final subTotal=controller.totalCartPrice.value;
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('SubTotal',style: Theme.of(context).textTheme.bodyMedium,),
-            Text('Rs.9000',style: Theme.of(context).textTheme.labelLarge,),
+            Text('Rs.${NumberFormat('#,##0', 'en_US').format(subTotal)}',style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
         const SizedBox(height: BSizes.spaceBtwItems/2),
@@ -119,7 +131,7 @@ class BillTotal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('ShippingFee',style: Theme.of(context).textTheme.bodyMedium,),
-            Text('Rs.90',style: Theme.of(context).textTheme.labelLarge,),
+            Text('Rs.${BPricingCalculator.calculateShippingCost(subTotal, 'Pakistan')}',style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
         const SizedBox(height: BSizes.spaceBtwItems/2),
@@ -127,7 +139,7 @@ class BillTotal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Tax',style: Theme.of(context).textTheme.bodyMedium,),
-            Text('Rs.9',style: Theme.of(context).textTheme.labelLarge,),
+            Text('Rs.${BPricingCalculator.calculateTax(subTotal, 'Pakistan')}',style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
         const SizedBox(height: BSizes.spaceBtwItems/2),
@@ -135,7 +147,7 @@ class BillTotal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Total',style: Theme.of(context).textTheme.bodyMedium,),
-            Text('Rs.9099',style: Theme.of(context).textTheme.titleMedium,),
+            Text('Rs.${NumberFormat('#,##0', 'en_US').format(BPricingCalculator.calculateTotalPrice(subTotal, 'Pakistan'))}',style: Theme.of(context).textTheme.titleMedium,),
           ],
         ),
       ],
@@ -149,6 +161,7 @@ class BillingPayment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=Get.put(CheckoutController());
     final dark = BHelperFunctions.isDarkMode(context);
     return Column(
       children: [
@@ -156,22 +169,24 @@ class BillingPayment extends StatelessWidget {
           title: 'Payment Method',
           buttonTitle: 'Change',
           showActionButton: true,
-          onPressed: (){},
+          onPressed: ()=>controller.selectPayment(context),
         ),
         const SizedBox(height: BSizes.spaceBtwItems/2,),
-        Row(
-          children: [
-            CircleConatiner(
-              width: 60,
-              height: 35,
-              backgroundColor: dark ? BColors.light : BColors.white,
-              padding: const EdgeInsets.all(BSizes.sm),
-              child: const Image(image: AssetImage(BImages.paypal),fit: BoxFit.contain,),
-            ),
-            const SizedBox(width: BSizes.spaceBtwItems/2,),
-            Text('Paypal',style: Theme.of(context).textTheme.bodyLarge,),
+        Obx(()
+          => Row(
+            children: [
+              CircleConatiner(
+                width: 60,
+                height: 35,
+                backgroundColor: dark ? BColors.light : BColors.white,
+                padding: const EdgeInsets.all(BSizes.sm),
+                child: Image(image: AssetImage(controller.selectPaymentMethod.value.image),fit: BoxFit.contain,),
+              ),
+              const SizedBox(width: BSizes.spaceBtwItems/2,),
+              Text(controller.selectPaymentMethod.value.name,style: Theme.of(context).textTheme.bodyLarge,),
 
-          ],
+            ],
+          ),
         )
       ],
     );
@@ -183,6 +198,8 @@ class BillingAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=AddressController.instance;
+    controller.allUserAddresses();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -190,26 +207,34 @@ class BillingAddress extends StatelessWidget {
           title: 'Shipping Address',
           buttonTitle: 'Change',
           showActionButton: true,
-          onPressed: (){},
+          onPressed: ()=>controller.selectNewAddressPopup(context),
         ),
         const SizedBox(height: BSizes.spaceBtwItems/2,),
-        Text('Hello 123 By Hello',style: Theme.of(context).textTheme.bodyLarge,),
-        const SizedBox(height: BSizes.spaceBtwItems/2,),
-        Row(
-          children: [
-            const Icon(Icons.phone,color: BColors.grey,size: 16,),
-            const SizedBox(width: BSizes.spaceBtwItems,),
-            Text('+92 123 123456',style: Theme.of(context).textTheme.bodyMedium,),
-          ],
-        ),
-        const SizedBox(height: BSizes.spaceBtwItems/2,),
-        Row(
-          children: [
-            const Icon(Icons.location_history,color: BColors.grey,size: 16,),
-            const SizedBox(width: BSizes.spaceBtwItems,),
-            Text('Lahore Punjab Pakistan',style: Theme.of(context).textTheme.bodyMedium,softWrap: true,),
-          ],
-        ),
+        controller.selectedAddress.value.id.isNotEmpty
+        ?Obx(()
+          => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(controller.selectedAddress.value.name,style: Theme.of(context).textTheme.bodyLarge,),
+              const SizedBox(height: BSizes.spaceBtwItems/2,),
+              Row(
+                children: [
+                  const Icon(Icons.phone,color: BColors.grey,size: 16,),
+                  const SizedBox(width: BSizes.spaceBtwItems,),
+                  Text(controller.selectedAddress.value.phoneNumber,style: Theme.of(context).textTheme.bodyMedium,),
+                ],
+              ),
+              const SizedBox(height: BSizes.spaceBtwItems/2,),
+              Row(
+                children: [
+                  const Icon(Icons.location_history,color: BColors.grey,size: 16,),
+                  const SizedBox(width: BSizes.spaceBtwItems,),
+                  Text(controller.selectedAddress.value.toString(),style: Theme.of(context).textTheme.bodyMedium,softWrap: true,),
+                ],
+              ),
+            ],
+          ),
+        ) : Text('Select Address',style: Theme.of(context).textTheme.bodyMedium,)
       ],
     );
   }

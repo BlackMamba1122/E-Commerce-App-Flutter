@@ -3,22 +3,16 @@ import 'package:flutter_application_1/common/widgets/appbar/appbar.dart';
 import 'package:flutter_application_1/common/widgets/home/primary_header_conatiner.dart';
 import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
 import 'package:flutter_application_1/common/widgets/settings/MenuTile.dart';
-import 'package:flutter_application_1/data/repositories/banner_repository.dart';
-import 'package:flutter_application_1/data/repositories/brand_repository.dart';
-import 'package:flutter_application_1/data/repositories/category_repository.dart';
-import 'package:flutter_application_1/data/repositories/product_repository.dart';
 import 'package:flutter_application_1/features/personalization/controllers/settings_controller.dart';
 import 'package:flutter_application_1/features/personalization/screens/address/UserAddressScreen.dart';
 import 'package:flutter_application_1/features/shop/screens/cart/cart.dart';
 import 'package:flutter_application_1/features/shop/screens/order/OrderScreen.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
-import 'package:flutter_application_1/utils/dummy_data.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/settings/UserProfil.dart';
-import '../../../../data/repositories/authentication.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});

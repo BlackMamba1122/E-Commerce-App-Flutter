@@ -35,7 +35,6 @@ class CartController extends GetxController {
       BLoaders.customToast(message: 'Not Enough Stock');
       return;
     }
-    ;
     if (product.productType == ProductType.single.toString() &&
         product.stock < productQuantityInCart.value) {
       BLoaders.customToast(message: 'Not Enough Stock');

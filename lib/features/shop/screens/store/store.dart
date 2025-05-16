@@ -11,7 +11,6 @@ import 'package:flutter_application_1/common/widgets/store/tabbar.dart';
 import 'package:flutter_application_1/features/shop/controllers/brand_controller.dart';
 import 'package:flutter_application_1/features/shop/controllers/category_controller.dart';
 import 'package:flutter_application_1/features/shop/models/category_model.dart';
-import 'package:flutter_application_1/features/shop/models/product_model.dart';
 import 'package:flutter_application_1/features/shop/screens/viewall/ViewAll.dart';
 import 'package:flutter_application_1/features/shop/screens/viewall/allBrand.dart';
 import 'package:flutter_application_1/features/shop/screens/viewall/brand_product.dart';
@@ -19,7 +18,6 @@ import 'package:flutter_application_1/utils/VerticalProductShimmer.dart';
 import 'package:flutter_application_1/utils/box_shimmer.dart';
 import 'package:flutter_application_1/utils/brand_shimmer.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
-import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
@@ -41,7 +39,7 @@ class Store extends StatelessWidget {
                   .of(context)
                   .textTheme
                   .headlineMedium,),
-              actions: [
+              actions: const [
                 CartCounterIcon(iconColor: BColors.white,counterBgColor: BColors.black,counterTextColor: BColors.white,)
               ],
             ),
@@ -137,7 +135,7 @@ class BCategoryTab extends StatelessWidget {
                     future: controller.getCategoryProducts(categoryId: category.id),
                     builder: (context, snapshot) {
                       final widget=TCloudHelperFunctions.checkMultiRecordState(loader: const BVerticalProductShimmer(), snapshot: snapshot);
-                      if(widget !=null) return widget!;
+                      if(widget !=null) return widget;
                       final products=snapshot.data!;
                       return BGridViewLayout(itemCount: products.length,
                           itemBuilder: (_, index) =>
@@ -175,11 +173,11 @@ class CategoryBrands extends StatelessWidget {
           ],
         );
         final widget=TCloudHelperFunctions.checkMultiRecordState(loader: Loader, snapshot: snapshot);
-        if(widget !=null) return widget!;
+        if(widget !=null) return widget;
         final brands=snapshot.data!;
         return ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: brands.length,
           itemBuilder: (_, index){
             final brand=brands[index];
@@ -187,7 +185,7 @@ class CategoryBrands extends StatelessWidget {
           future: controller.getBrandProducts(brandId: brand.id,limit: 3),
           builder: (context, snapshot) {
             final widget=TCloudHelperFunctions.checkMultiRecordState(loader: Loader, snapshot: snapshot);
-            if(widget !=null) return widget!;
+            if(widget !=null) return widget;
             final products=snapshot.data!;
             return BBrandShowCase(
               images: products.map((product) => product.thumbnail).toList(),

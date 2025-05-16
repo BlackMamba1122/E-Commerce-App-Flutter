@@ -33,8 +33,8 @@ class BCircularImage extends StatelessWidget {
             fit: fit,
             color: overlayColor,
             imageUrl: image,
-            progressIndicatorBuilder: (context,url,downloadProgress)=>BShimmerEffect(width: 55, height: 55,radius: 55,),
-            errorWidget: (context,url,error)=>Icon(Icons.access_alarm_sharp),
+            progressIndicatorBuilder: (context,url,downloadProgress)=>const BShimmerEffect(width: 55, height: 55,radius: 55,),
+            errorWidget: (context,url,error)=>const Icon(Icons.access_alarm_sharp),
           )
          : Image(
           fit: fit,

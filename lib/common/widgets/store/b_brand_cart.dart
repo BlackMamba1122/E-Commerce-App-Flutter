@@ -5,7 +5,6 @@ import 'package:flutter_application_1/common/widgets/home/circle_conatiner.dart'
 import 'package:flutter_application_1/features/shop/models/brand_model.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/enums.dart';
-import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 

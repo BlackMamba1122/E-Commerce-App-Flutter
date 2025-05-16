@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/b_round_image.dart';
 import 'package:flutter_application_1/common/widgets/home/circle_conatiner.dart';
 import 'package:flutter_application_1/features/shop/controllers/banner_controller.dart';
-import 'package:flutter_application_1/features/shop/controllers/home_controller.dart';
 import 'package:flutter_application_1/utils/BShimmerEffect.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
@@ -18,8 +17,9 @@ class BPromoSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BannerController());
     return Obx(() {
-      if (controller.isLoading.value)
-        return BShimmerEffect(width: double.infinity, height: 190);
+      if (controller.isLoading.value) {
+        return const BShimmerEffect(width: double.infinity, height: 190);
+      }
       if (controller.banners.isEmpty) {
         return const Center(
           child: Text('No Data'),

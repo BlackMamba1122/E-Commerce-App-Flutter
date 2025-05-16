@@ -10,7 +10,7 @@ class BBrandShimmer extends StatelessWidget {
     return BGridViewLayout(
         mainAxisExtent: 80,
         itemCount: itemCount,
-        itemBuilder:(_,__)=> BShimmerEffect(width: 300, height: 80)
+        itemBuilder:(_,__)=> const BShimmerEffect(width: 300, height: 80)
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/data/repositories/authentication.dart';
-import 'package:flutter_application_1/features/authentication/screens/password_config/reset_password.dart';
 import 'package:flutter_application_1/features/authentication/screens/password_config/reset_password_email.dart';
 import 'package:get/get.dart';
 

@@ -49,6 +49,7 @@ class Subcatogaryscreen extends StatelessWidget {
 
                     final subCategories = snapshot.data!;
                     return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: subCategories.length,
                         itemBuilder: (_, index) {

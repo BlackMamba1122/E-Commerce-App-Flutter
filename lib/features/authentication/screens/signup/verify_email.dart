@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/common/widgets/login/success_screen.dart';
 import 'package:flutter_application_1/data/repositories/authentication.dart';
-import 'package:flutter_application_1/features/authentication/screens/login/login.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';

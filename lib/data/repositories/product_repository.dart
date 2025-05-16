@@ -20,8 +20,10 @@ class ProductRepository extends GetxController {
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
       final snapshot = await _db.collection('Products').where(
-          'IsFeatured', isEqualTo: true).limit(3).get();
-      return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
+          'IsFeatured', isEqualTo: true).get();
+        final allProducts=snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
+        allProducts.shuffle();
+      return allProducts.take(5).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on PlatformException catch (e) {
@@ -133,7 +135,7 @@ class ProductRepository extends GetxController {
 // Assign URL to product. thumbnail attribute
 // Product list of images
         //brand
-        if (product.brand!.image != null && product.brand!.image !.isNotEmpty) {
+        if (product.brand!.image .isNotEmpty) {
           if (uploadedBrands.containsKey(product.brand!.image)) {
             product.brand!.image = uploadedBrands[product.brand!.image]!;
           }

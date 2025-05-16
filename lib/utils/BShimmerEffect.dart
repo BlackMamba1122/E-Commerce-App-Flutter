@@ -6,12 +6,12 @@ import 'helpers/helper_function.dart';
 
 class BShimmerEffect extends StatelessWidget {
   const BShimmerEffect({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     this.radius = 15,
     this.color,
-  }) : super(key: key);
+  });
   final double width, height, radius;
   final Color? color;
 

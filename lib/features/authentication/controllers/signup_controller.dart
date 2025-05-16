@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/repositories/authentication.dart';
-import 'package:flutter_application_1/data/repositories/user_repo.dart';
 import 'package:flutter_application_1/features/personalization/controllers/UserController.dart';
 import 'package:flutter_application_1/utils/network.dart';
 import 'package:flutter_application_1/features/authentication/screens/signup/verify_email.dart';

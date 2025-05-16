@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/b_brand_title_with_icon.dart';
 import 'package:flutter_application_1/common/widgets/home/b_round_image.dart';
 import 'package:flutter_application_1/common/widgets/home/circle_conatiner.dart';
-import 'package:flutter_application_1/common/widgets/home/circular_Icon.dart';
 import 'package:flutter_application_1/common/widgets/home/product_price.dart';
 import 'package:flutter_application_1/common/widgets/home/product_title.dart';
 import 'package:flutter_application_1/common/widgets/home/shadow.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_application_1/features/shop/models/product_model.dart';
 import 'package:flutter_application_1/features/shop/screens/detailProduct/product_deatil.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/enums.dart';
-import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 import 'package:get/get.dart';
@@ -66,14 +64,14 @@ class BProductCardVertical extends StatelessWidget {
             ),
             const SizedBox(height: BSizes.spaceBtwItems/2),
              Padding(
-            padding: EdgeInsets.only(left: BSizes.sm),
+            padding: const EdgeInsets.only(left: BSizes.sm),
             child: SizedBox(
               width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BProductTitleText(title: product.title,smallSize: true,),
-                SizedBox(height: BSizes.spaceBtwItems/2),
+                const SizedBox(height: BSizes.spaceBtwItems/2),
                 BBrandTitle(title: product.brand!.name),
               ],
             ),
@@ -88,14 +86,14 @@ class BProductCardVertical extends StatelessWidget {
                         children: [
                           if(product.productType == ProductType.single.toString() && product.salePrice > 0)
                               Padding(
-                                padding: EdgeInsets.only(left: BSizes.sm),
+                                padding: const EdgeInsets.only(left: BSizes.sm),
                                 child: Text(
                                 NumberFormat('#,##0', 'en_US').format(product.price),
                                   style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                                 ),
                               ),
                           Padding(
-                            padding: EdgeInsets.only(left: BSizes.sm),
+                            padding: const EdgeInsets.only(left: BSizes.sm),
                             child: BProductPrice(price: controller.getProductPrice(product)),
                           ),
                         ],
@@ -136,7 +134,7 @@ final ProductModel product;
           return Container(
             decoration: BoxDecoration(
                 color: isQuantity ? BColors.primary : BColors.dark,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(BSizes.cardRadiusMd),
                   bottomRight: Radius.circular(BSizes.productImageRadius),
                 )
@@ -146,7 +144,7 @@ final ProductModel product;
                 height: BSizes.iconLg*1.2,
                 child: Center(child: isQuantity
                     ? Text(quantity.toString(),style: Theme.of(context).textTheme.bodyLarge!.apply(color: BColors.white),)
-                    :Icon(Iconsax.add,color: BColors.white)
+                    :const Icon(Iconsax.add,color: BColors.white)
                 )
             ),
           );

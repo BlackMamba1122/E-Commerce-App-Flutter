@@ -33,7 +33,7 @@ class AuthenticationRepository extends GetxController {
     if(user != null){
       if(user.emailVerified){
         await BLocalStorage.init(user.uid);
-        Get.offAll(()=>NavigationMenu());
+        Get.offAll(()=>const NavigationMenu());
       } else{
         Get.offAll(()=>VerifyEmail(email: _auth.currentUser?.email,));
       }
@@ -54,7 +54,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e){
       throw TPlatformException(e.code).message;
     } catch(e){
@@ -70,7 +70,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e){
       throw TPlatformException(e.code).message;
     } catch(e){
@@ -87,7 +87,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e){
       throw TPlatformException(e.code).message;
     } catch(e){
@@ -103,7 +103,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e){
       throw TPlatformException(e.code).message;
     } catch(e){
@@ -119,7 +119,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e){
       throw TPlatformException(e.code).message;
     } catch(e){
@@ -136,7 +136,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e){
       throw TPlatformException(e.code).message;
     } catch(e){
@@ -153,7 +153,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e){
       throw TPlatformException(e.code).message;
     } catch(e){

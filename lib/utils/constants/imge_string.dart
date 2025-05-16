@@ -275,4 +275,6 @@ static const String complete = "assets/image/verify_email/Complete.gif";
   static const String docker = "assets/image/animations/141594-animation-of-docer.json";
   static const String pencilAnimation = "assets/image/animations/140429-pencil-drawing.json";
   static const String cartAnimation = "assets/image/animations/lady-adding-product-in-cart-animation.json";
+  static const String orderCompletedAnimation = "assets/image/animations/order-complete-car-delivery-animation.json";
+  static const String orderCompleteAnimation = "assets/image/animations/orderComplete.png";
 }

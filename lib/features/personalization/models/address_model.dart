@@ -52,22 +52,22 @@ class AddressModel {
         street: data['Street'] as String,
         city: data[ 'City' ] as String,
         state: data[ 'State'] as String,
-        postalCode: data[ 'PostalCode' ] as String,
+        postalCode: data['PostalCode'] as String,
         country: data[ 'Country' ] as String,
         selectedAddress: data[ 'SelectedAddress' ] as bool,
         dateTime: (data[ 'DateTime' ] as Timestamp).toDate(),
     );
 }
-     factory AddressModel. fromDocumentSnapshot(DocumentSnapshot snapshot) {
+     factory AddressModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
        final data = snapshot.data() as Map<String, dynamic>;
        return AddressModel(
          id: snapshot.id,
          name: data[ 'Name' ] ?? '',
-         phoneNumber: data[ 'PhoneNumber ' ] ?? '',
+         phoneNumber: data[ 'PhoneNumber' ] ?? '',
          street: data[ 'Street'] ?? '',
          city: data[ 'City' ] ?? '',
          state: data[ 'State'] ?? '',
-         postalCode: data [ 'PostalCode ' ] ?? ' ',
+         postalCode: data [ 'PostalCode' ] ?? ' ',
          country: data[ 'Country' ] ?? '',
          dateTime: (data[ 'DateTime' ] as Timestamp).toDate(),
          selectedAddress: data[ 'SelectedAddress' ] as bool,

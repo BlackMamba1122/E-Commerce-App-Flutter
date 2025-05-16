@@ -24,7 +24,7 @@ class ViewallScreen extends StatelessWidget {
       appBar: BAppBar(title: Text(title), showArrow: true,),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(BSizes.defaultSpace),
+          padding: const EdgeInsets.all(BSizes.defaultSpace),
           child: FutureBuilder(
             future: futureMethod ?? controller.fetchProductByQuery(query),
             builder: (context,snapshot) {

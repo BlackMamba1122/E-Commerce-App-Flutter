@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/store/b_circular_image.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
-import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 
 class VerticalImageText extends StatelessWidget {
   const VerticalImageText({
@@ -15,7 +14,6 @@ class VerticalImageText extends StatelessWidget {
   final bool isNetworkImage;
   @override
   Widget build(BuildContext context) {
-    final dark =BHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: onTop,
       child: Padding(

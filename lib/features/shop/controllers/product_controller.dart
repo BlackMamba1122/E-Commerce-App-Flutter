@@ -49,10 +49,12 @@ class ProductController extends GetxController {
     else {
         for(var variation in product.productVariations!) {
           double priceToConsider = variation.salePrice > 0.0 ? variation.salePrice : variation.price;
-          if(priceToConsider < smallestPrice)
+          if(priceToConsider < smallestPrice) {
             smallestPrice=priceToConsider;
-          if(priceToConsider > largestPrice)
+          }
+          if(priceToConsider > largestPrice) {
             largestPrice=priceToConsider;
+          }
         }
       }
     if(smallestPrice==largestPrice) {

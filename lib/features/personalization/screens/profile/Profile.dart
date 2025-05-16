@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
                       final networkImage=controller.user.value.profilePicture;
                       final image = networkImage.isNotEmpty ? networkImage : BImages.user;
                       return controller.imageUploading.value
-                        ? BShimmerEffect(width: 80, height: 80,radius: 80,)
+                        ? const BShimmerEffect(width: 80, height: 80,radius: 80,)
                         : BCircularImage(image: image, width: 80, height: 80,isNetworkImage: networkImage.isNotEmpty,);
                     }),
                     TextButton(onPressed: () => controller.uploadProfilePicture(),
@@ -52,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
               Obx(
                   ()=> profileMenu(title: 'Name',
                     value: controller.user.value.fullName,
-                    onTap: () => Get.to(() => ChangeName())),
+                    onTap: () => Get.to(() => const ChangeName())),
               ),
               profileMenu(title: "Username",
                   value: controller.user.value.username,

@@ -17,7 +17,7 @@ class BVerticalProductShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BGridViewLayout(
         itemCount: itemCount,
-        itemBuilder: (_,__) => SizedBox(
+        itemBuilder: (_,__) => const SizedBox(
           width: 180,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

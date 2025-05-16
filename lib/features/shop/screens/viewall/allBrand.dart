@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/grid_layout.dart';
 import 'package:flutter_application_1/common/widgets/home/section_heading.dart';
 import 'package:flutter_application_1/features/shop/controllers/brand_controller.dart';
-import 'package:flutter_application_1/features/shop/models/brand_model.dart';
 import 'package:flutter_application_1/features/shop/screens/viewall/brand_product.dart';
 import 'package:flutter_application_1/utils/brand_shimmer.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';

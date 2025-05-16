@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../../../common/widgets/login/success_screen.dart';
 import '../../../utils/constants/imge_string.dart';
 import '../../../utils/constants/text_string.dart';
-import '../screens/login/login.dart';
 
 class VerifyEmailController extends GetxController {
   static VerifyEmailController get instance=>Get.find();
@@ -27,7 +26,7 @@ class VerifyEmailController extends GetxController {
     }
   }
   SetTimer() {
-    Timer.periodic(Duration(seconds: 1), (timer) async{
+    Timer.periodic(const Duration(seconds: 1), (timer) async{
       await FirebaseAuth.instance.currentUser?.reload();
       final user=FirebaseAuth.instance.currentUser;
       if(user?.emailVerified ??  false){

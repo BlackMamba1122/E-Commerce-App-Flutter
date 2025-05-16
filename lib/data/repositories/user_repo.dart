@@ -1,14 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/data/repositories/authentication.dart';
 import 'package:flutter_application_1/features/personalization/models/UserModel.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../utils/exceptions/firebase_exceptions.dart';
@@ -39,10 +36,11 @@ class UserRepository extends GetxController {
   {
     try {
       final detail=await _db.collection("Users").doc(AuthenticationRepository.instance.authUser?.uid).get();
-      if(detail.exists)
+      if(detail.exists) {
         return UserModel.fromSnapshot(detail);
-      else
+      } else {
         return UserModel.empty();
+      }
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch(_) {

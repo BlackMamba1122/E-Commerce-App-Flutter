@@ -7,7 +7,6 @@ import 'package:flutter_application_1/utils/constants/text_string.dart';
 import 'package:get/get.dart';
 
 import '../../../../../utils/BShimmerEffect.dart';
-import '../../cart/cart.dart';
 
 
 class HomeAppBar extends StatelessWidget {
@@ -23,14 +22,15 @@ class HomeAppBar extends StatelessWidget {
       children: [
         Text(BTexts.homeAppbarTitle,style: Theme.of(context).textTheme.labelMedium!.apply(color: BColors.grey)),
         Obx((){
-          if(controller.profileLoading.value)
-            return BShimmerEffect(width: 80,height: 15);
-          else
+          if(controller.profileLoading.value) {
+            return const BShimmerEffect(width: 80,height: 15);
+          } else {
             return Text(controller.user.value.fullName,style: Theme.of(context).textTheme.headlineSmall!.apply(color: BColors.white));
+          }
         }),
       ],
     ),
-    actions: [
+    actions: const [
       CartCounterIcon(iconColor: BColors.white,counterBgColor: BColors.black,counterTextColor: BColors.white,)
     ],
     );

@@ -19,11 +19,11 @@ class BrandProduct extends StatelessWidget {
       appBar: BAppBar(title: Text(brand.name), showArrow: true,),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(BSizes.defaultSpace),
+          padding: const EdgeInsets.all(BSizes.defaultSpace),
           child: Column(
             children: [
               BBrandCart(showBorder: true, brand: brand,),
-              SizedBox(height: BSizes.spaceBtwSections,),
+              const SizedBox(height: BSizes.spaceBtwSections,),
               FutureBuilder(
                 future: controller.getBrandProducts(brandId: brand.id),
                 builder: (context, snapshot) {

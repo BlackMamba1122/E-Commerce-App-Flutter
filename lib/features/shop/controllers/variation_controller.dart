@@ -13,9 +13,9 @@ class VariationController extends GetxController {
   Rx<ProductVariationModel> selectedVariation = ProductVariationModel.empty().obs;
 
   void onAttributeSelected(ProductModel product, attributeName, attributeValue) {
-    final SelectedAttribute = Map<String,dynamic>.from(this.selectedAttributes);
+    final SelectedAttribute = Map<String,dynamic>.from(selectedAttributes);
     SelectedAttribute[attributeName] = attributeValue;
-    this.selectedAttributes[attributeName]=attributeValue;
+    selectedAttributes[attributeName]=attributeValue;
 
     final selectedVariation = product.productVariations!.firstWhere(
       (variation) => isSameAttributValues(variation.attributeValues,SelectedAttribute),
@@ -66,5 +66,11 @@ class VariationController extends GetxController {
     selectedAttributes.clear();
     selectedVariation.value = ProductVariationModel.empty();
     variationStockStatus.value = '';
+  }
+
+  @override
+  void onClose() {
+    resetSelectedAttributes();
+    super.onClose();
   }
 }

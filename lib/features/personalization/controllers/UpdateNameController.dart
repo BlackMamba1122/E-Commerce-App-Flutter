@@ -6,7 +6,6 @@ import '../../../utils/constants/imge_string.dart';
 import '../../../utils/network.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 import '../../../utils/popups/loaders.dart';
-import '../screens/profile/Profile.dart';
 
 class UpdateNameController extends GetxController {
   static UpdateNameController get instance => Get.find();

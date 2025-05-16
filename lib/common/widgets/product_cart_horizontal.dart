@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/home/b_brand_title_with_icon.dart';
 import 'package:flutter_application_1/common/widgets/home/b_round_image.dart';
 import 'package:flutter_application_1/common/widgets/home/circle_conatiner.dart';
-import 'package:flutter_application_1/common/widgets/home/circular_Icon.dart';
 import 'package:flutter_application_1/common/widgets/home/product_price.dart';
 import 'package:flutter_application_1/common/widgets/home/product_title.dart';
 import 'package:flutter_application_1/features/shop/controllers/product_controller.dart';
@@ -12,12 +11,12 @@ import 'package:flutter_application_1/features/shop/screens/detailProduct/produc
 import 'package:flutter_application_1/features/shop/screens/wishlist/favourite_icon.dart';
 import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/enums.dart';
-import 'package:flutter_application_1/utils/constants/imge_string.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+
+import 'home/product_cart_vertical.dart';
 
 class BProductCardHorizontal extends StatelessWidget {
   const BProductCardHorizontal({super.key, required this.product});
@@ -28,7 +27,7 @@ final ProductModel product;
     final salePercentage=controller.calculateSalePercentage(product.price, product.salePrice);
     final dark =BHelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: ()=>Get.to(()=> ProductDeatil(product: ProductModel.empty(),)),
+      onTap: ()=>Get.to(()=> ProductDeatil(product: product,)),
       child: Container(
         width: 310,
         padding: const EdgeInsets.all(1),
@@ -70,7 +69,7 @@ final ProductModel product;
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BProductTitleText(title: product.title,smallSize: true,),
-                        SizedBox(height: BSizes.spaceBtwItems/2),
+                        const SizedBox(height: BSizes.spaceBtwItems/2),
                         BBrandTitle(title: product.brand!.name),
                       ],
                     ),
@@ -83,33 +82,20 @@ final ProductModel product;
                             children: [
                               if(product.productType == ProductType.single.toString() && product.salePrice > 0)
                                 Padding(
-                                  padding: EdgeInsets.only(left: BSizes.sm),
+                                  padding: const EdgeInsets.only(left: BSizes.sm),
                                   child: Text(
                                     NumberFormat('#,##0', 'en_US').format(product.price),
                                     style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                                   ),
                                 ),
                               Padding(
-                                padding: EdgeInsets.only(left: BSizes.sm),
-                                child: BProductPrice(price: NumberFormat('#,##0', 'en_US').format(controller.getProductPrice(product)),),
+                                padding: const EdgeInsets.only(left: BSizes.sm),
+                                child: BProductPrice(price:controller.getProductPrice(product),),
                               ),
                             ],
                           ),
                         ),
-                        Container(
-                          decoration: const BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(BSizes.cardRadiusMd),
-                                bottomRight: Radius.circular(BSizes.productImageRadius),
-                              )
-                          ),
-                          child: const SizedBox(
-                              width: BSizes.iconLg*1.2,
-                              height: BSizes.iconLg*1.2,
-                              child: Center(child: Icon(Iconsax.add,color: BColors.white))
-                          ),
-                        )
+                        ProductAddToCartButton(product: product,),
                       ],
                     )
                   ],
