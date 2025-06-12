@@ -4,12 +4,13 @@ import 'package:flutter_application_1/features/shop/controllers/variation_contro
 import 'package:flutter_application_1/utils/network.dart';
 import 'package:get/get.dart';
 
+
 class GenralBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(NetworkManager());
     Get.put(VariationController());
     Get.put(AddressController());
-    Get.put((CheckoutController()));
+    Get.put(CheckoutController());
   }
 }

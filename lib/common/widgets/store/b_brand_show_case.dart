@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/widgets/store/b_brand_cart.dart';
 import 'package:flutter_application_1/common/widgets/home/circle_conatiner.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
 import 'package:get/get.dart';
+
+import '../../../utils/BShimmerEffect.dart';
 
 class BBrandShowCase extends StatelessWidget {
   const BBrandShowCase({
@@ -45,7 +48,22 @@ Widget brandTopProductImageWidget(String image,context,bool isNetworkImage)
                   backgroundColor: BHelperFunctions.isDarkMode(context) ? BColors.darkerGrey : BColors.light,
                   margin: const EdgeInsets.only(right: BSizes.sm),
                   padding: const EdgeInsets.all(BSizes.md),
-                  child:  Image(fit: BoxFit.contain,image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider),
+                  child:  isNetworkImage
+                      ? CachedNetworkImage(
+                    imageUrl: image,
+                    fit: BoxFit.contain,
+                    placeholder: (context, url) => const BShimmerEffect(
+                      width: 100,
+                      height: 100,
+                      radius: 100,
+                    ),
+                    errorWidget: (context, url, error) =>
+                    const Icon(Icons.broken_image, size: 40),
+                  )
+                      : Image.asset(
+                    image,
+                    fit: BoxFit.contain,
+                  ),
 
                 ),
               );

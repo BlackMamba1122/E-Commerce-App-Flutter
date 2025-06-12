@@ -30,6 +30,9 @@ class BPromoSlider extends StatelessWidget {
             CarouselSlider(
                 items: controller.banners
                     .map((banner) => BRoundImage(
+                  width: double.infinity,
+                          height: 190,
+                          fit: BoxFit.contain,
                           imageUrl: banner.imageUrl,
                           isNetworkImage: true,
                           onPressed: () => Get.toNamed(banner.targetScreen),

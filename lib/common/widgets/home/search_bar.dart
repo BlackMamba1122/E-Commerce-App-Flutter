@@ -3,19 +3,21 @@ import 'package:flutter_application_1/utils/constants/colors.dart';
 import 'package:flutter_application_1/utils/constants/sizes.dart';
 import 'package:flutter_application_1/utils/device/device_utlity.dart';
 import 'package:flutter_application_1/utils/helpers/helper_function.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../../features/shop/screens/SearchScreen/searchScreen.dart';
 
 
 class BSearchBar extends StatelessWidget {
   const BSearchBar({
-    super.key, this.onTap,
+    super.key,
   });
-  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     final dark = BHelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: onTap,
+      onTap:()=>Get.to(()=>const SearchScreen()),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: BSizes.defaultSpace),
         child: Container(

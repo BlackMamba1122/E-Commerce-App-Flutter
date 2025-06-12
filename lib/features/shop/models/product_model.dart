@@ -26,9 +26,7 @@ class ProductModel {
 
   ProductModel({
 
-    required
-
-    this.id,
+    required this.id,
     required this.title,
     required this.stock,
     required this.price,
@@ -61,6 +59,7 @@ class ProductModel {
   /// Json Format
   toJson() {
     return {
+      'Id': id,
       'SKU': sku,
       'Title': title,
       'Stock': stock,
@@ -85,7 +84,7 @@ class ProductModel {
     if(document.data() == null) return ProductModel.empty();
     final data = document.data() !;
     return ProductModel(
-        id: document.id,
+        id: data['Id'],
         sku: data['SKU'],
         title: data['Title'],
         stock: data['Stock'] ?? 0,
@@ -109,7 +108,7 @@ class ProductModel {
   factory ProductModel.fromQuerySnapshot(QueryDocumentSnapshot<Object?> document) {
     final data = document.data() as Map<String, dynamic>;
     return ProductModel(
-        id: document.id,
+        id: data['Id'] ?? '',
         sku: data[ 'SKU' ] ?? '',
       title: data[ 'Title'] ?? '',
       stock: data[ 'Stock'] ?? 0,

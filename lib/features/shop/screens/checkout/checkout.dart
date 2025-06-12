@@ -210,9 +210,9 @@ class BillingAddress extends StatelessWidget {
           onPressed: ()=>controller.selectNewAddressPopup(context),
         ),
         const SizedBox(height: BSizes.spaceBtwItems/2,),
-        controller.selectedAddress.value.id.isNotEmpty
-        ?Obx(()
-          => Column(
+        Obx(()
+        =>controller.selectedAddress.value.id.isNotEmpty
+          ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(controller.selectedAddress.value.name,style: Theme.of(context).textTheme.bodyLarge,),
@@ -233,8 +233,8 @@ class BillingAddress extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-        ) : Text('Select Address',style: Theme.of(context).textTheme.bodyMedium,)
+          ): Text('Select Address',style: Theme.of(context).textTheme.bodyMedium,)
+        )
       ],
     );
   }

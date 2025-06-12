@@ -8,6 +8,7 @@ import '../../../utils/constants/sizes.dart';
 class SettingsController extends GetxController {
   static SettingsController get instance => Get.find();
 
+  RxBool mode=false.obs;
   void logoutAccountWarningPopup() {
     Get.defaultDialog(
       contentPadding: const EdgeInsets.all(BSizes.md),
